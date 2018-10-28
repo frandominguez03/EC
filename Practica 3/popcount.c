@@ -122,7 +122,7 @@ int popcount3(unsigned* array, size_t len)
     "		 jnz ini3    	 \n\t"
 
     	 : [r]"+r" (res)
-    	 : [x] "r" (x)	  );
+    	 : [x] "r" (x));
     }
 
     return res;
@@ -143,12 +143,11 @@ int popcount4(unsigned* array, size_t len)
     "ini4:			  		 \n\t"
     "		 adc   $0,  %[r] \n\t"
     "		 shr  %[x] 		 \n\t"
-    "		 jc fin4    	 \n\t"
-    "fin4:					 \n\t"    
-    "		 jne ini4		 \n\t"
+    "		 jnz ini4    	 \n\t"
+    "		 adc   $0,  %[r] \n\t"
 
     	 : [r]"+r" (res)
-    	 : [x] "r" (x)	  );
+    	 : [x] "r" (x));
     }
 
     return res;
