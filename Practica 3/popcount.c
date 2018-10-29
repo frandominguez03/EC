@@ -53,7 +53,15 @@ int resultado=0;
 	#define RESULT 156
 /* -------------------------------------------------------------------- */
 	#elif TEST==3
-/* -------------------------------------------------------------------- */
+/* -----------------------count1 (lenguaje C - 	  for)");
+	crono(popcount2, "popcount2 (lenguaje C - 	while)");
+	crono(popcount3 ,"popcount3 (leng.ASM-body while 4i)");
+	crono(popcount4 ,"popcount4 (leng.ASM-body while 3i)");
+	crono(popcount5 ,"popcount5 (CS:APP2e 3.49-group 8b)");
+	crono(popcount6 ,"popcount6 (Wikipedia- naive - 32b)");
+	crono(popcount7 ,"popcount7 (Wikipedia- naive -128b)");
+	crono(popcount8 ,"popcount8 (asm SSE3 - pshufb 128b)");
+	crono(popcount9 ,"po--------------------------------------------- */
 	#define SIZE 8
 	unsigned lista[SIZE]={0x0       , 0x01020408, 0x35906a0c, 0x70b0d0e0,
 						  0xffffffff, 0x12345678, 0x9abcdef0, 0xdeadbeef};
@@ -163,21 +171,24 @@ int popcount4(unsigned* array, size_t len)
 int popcount5(unsigned* array, size_t len)
 {
 	size_t   x;
-	size_t val=0;
+	int sal = 0;
 
     for (size_t i=0; i<len; i++)
     {
+    	size_t val=0;
     	x = array[i];
-		for (size_t j=0; j<8*sizeof(int); j++) {
-			val += x & 0x01;
+		for (size_t j=0; j<8; j++) {
+			val += x & 0x01010101;
 			x >>= 1;
 		}
 
-	val += (val >> 16);
-	val += (val >> 8);
+		val += (val >> 16);
+		val += (val >> 8);
+		sal += val & 0xFF;
+		
     }
 
-	return val;
+	return sal;
 }
 
 int popcount6(unsigned* array, size_t len)
