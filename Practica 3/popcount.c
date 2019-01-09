@@ -315,8 +315,8 @@ int popcount10(unsigned* array, size_t len)
 		x2 = *(unsigned long*) &array[i+2];
 
 		asm("popcnt %[x1], %[val] \n\t"
-			"popcnt %[x2], %%rdi \n\t"
-			"add	%%rdi, %[val] \n\t"
+			"popcnt %[x2], %%rsi \n\t"
+			"add	%%rsi, %[val] \n\t"
 			: [val] "=&r" (val)
 			: 	[x1]  "r" (x1),
 			 	[x2]  "r" (x2)
